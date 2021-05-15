@@ -58,10 +58,10 @@ const AppLayout = ({ children }) => {
             </SRow>
             <SMenu mode="horizontal">
                 <Link href="/"><a>메인페이지</a></Link>
-                <Link href="/signup"><a>내가 찜한 목록</a></Link>
+                <Link href="/cart"><a>내가 찜한 목록</a></Link>
                 <Link href="/profile"><a>마이 페이지</a></Link>
                 <Link href="/login"><a>로그인</a></Link>
-                <Link href="/join"><a>회원가입</a></Link>     
+                <Link href="/signup"><a>회원가입</a></Link>     
             </SMenu>
         </>
     );

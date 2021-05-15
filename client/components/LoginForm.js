@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React from 'react';
 import { Button, Form, Input } from 'antd';
 import useInput from '../hooks/useInput';
 import styled from 'styled-components';
@@ -8,6 +8,13 @@ const Logo = styled.img`
     width: 150px;
     height: 200px;
     margin: 0 auto;
+`;
+
+const Greeting = styled.h2`
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
 `;
 
 const SForm = styled(Form)`
@@ -38,6 +45,7 @@ const LoginForm = () => {
         <SForm>
             <WrapperContainer>
                 <Logo src="/logo.png" alt="로고 이미지"/>
+                <Greeting>오늘 하루도 인생템 득템하세요!</Greeting>
                 <Form.Item
                     rules={[{ required: true, message: '이메일을 입력해주세요!' }]}>
                     <label htmlFor="user-email">이메일</label>
