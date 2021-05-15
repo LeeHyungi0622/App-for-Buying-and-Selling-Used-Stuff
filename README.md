@@ -49,9 +49,9 @@
 
 🗓️ 2021.05.15(Sat)
 
-**(1) Issue1) Initial setup for project**
+**(1) Issue1) Client side 프로젝트 기본 구성하기t**
 
-→ []()
+→ [https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/1](https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/1)
 
 # **Project Screen Shots**
 
