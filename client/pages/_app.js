@@ -2,22 +2,20 @@ import React from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import 'antd/dist/antd.css';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
     body {
+        ${reset};
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        background-color: yellow;
+        background-color: #ffffc7;
+        font-family: sans-serif;
     };
 `;
 
-const theme = {
-    colors: {
-        primary: '#0070f3'
-    }
-};
 
 const App = ({ Component, pageProps }) => {
 
@@ -25,6 +23,7 @@ const App = ({ Component, pageProps }) => {
         <>
             <Head>
                 <meta charSet="utf-8"/>
+                <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
                 <title>Second hand shop</title>
             </Head>
             <GlobalStyle />

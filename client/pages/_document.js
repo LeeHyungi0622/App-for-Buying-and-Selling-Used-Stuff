@@ -3,6 +3,7 @@ import Document from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
+    // ctx: DocumentContext
     static async getInitialProps(ctx) {
         // ServerStyleSheet instance를 생성한다.
         const sheet = new ServerStyleSheet();
