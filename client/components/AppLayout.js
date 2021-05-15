@@ -2,11 +2,16 @@ import React from 'react';
 import { Menu } from 'antd';
 import Link from 'next/link';
 import { Row, Col } from 'antd';
+import styled from 'styled-components';
+
+const SMenu = styled(Menu)`
+    background-color: pink;
+`;
 
 const AppLayout = ({ children }) => {
     return (
         <>
-            <Menu mode="horizontal">
+            <SMenu mode="horizontal">
                 <Menu.Item>
                     <Link href="/"><a>중고시장</a></Link>
                 </Menu.Item>
@@ -16,7 +21,7 @@ const AppLayout = ({ children }) => {
                 <Menu.Item>
                     <Link href="/signup"><a>회원가입</a></Link>
                 </Menu.Item>
-            </Menu>
+            </SMenu>
             <Row gutter={8}>
                 <Col xs={24} md={6}>
                     Login section
