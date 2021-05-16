@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import 'antd/dist/antd.css';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import wrapper from '../redux/store';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -36,4 +37,4 @@ App.propTypes = {
     Component: PropTypes.elementType.isRequired,
 }
 
-export default App;
+export default wrapper.withRedux(App);
