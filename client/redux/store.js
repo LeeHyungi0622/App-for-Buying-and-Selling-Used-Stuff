@@ -2,9 +2,11 @@ import { createWrapper } from 'next-redux-wrapper';
 import { applyMiddleware, compose, createStore } from 'redux';
 import rootReducer from './root-reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import createSagaMiddleware from 'redux-saga';
 
 const configureStore = () => {
-    const middleware = [];
+    const sagaMiddleware = createSagaMiddleware();
+    const middleware = [sagaMiddleware];
     const enhancer = process.env.NODE_ENV === 'production' ?
         // 개발시에 필요한 middleware 추가 (redux-saga, thunk)
         compose(applyMiddleware(...middleware)) :

@@ -1,8 +1,13 @@
-import { postTypes } from './post.types';
+import { ADD_COMMENT_REQUEST, ADD_POST_REQUEST } from './post.types';
 
-export const addPost = () => ({
-    type: postTypes.ADD_POST,
+export const addPost = (data) => ({
+    type: ADD_POST_REQUEST,
     data: dummyPostData
+});
+
+export const addComment = (data) => ({
+    type: ADD_COMMENT_REQUEST,
+    data
 });
 
 const dummyPostData = {
