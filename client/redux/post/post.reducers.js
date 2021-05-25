@@ -1,4 +1,4 @@
-import { postTypes } from './post.types';
+import { ADD_POST_REQUEST, ADD_POST_SUCCESS, ADD_POST_FAILURE, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, ADD_COMMENT_FAILURE } from './post.types';
 
 const INITIAL_STATE = {
     mainPost: [{
@@ -33,16 +33,67 @@ const INITIAL_STATE = {
         ]
     }],
     imagePaths: [],
-    postAdded: false
+    addPostLoading: false,
+    addPostDone: false,
+    addPostError: null,
+    addCommentLoading: false,
+    addCommentDone: false,
+    addCommentError: null
+}
+
+
+// dummy post data
+const dummyPost = {
+    id: 2,
+    content: 'dummy data description',
+    User: {
+        id: 1,
+        nickname: 'lee',
+    },
+    Images: [],
+    Comments: []
 }
 
 const postReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case postTypes.ADD_POST:
+        case ADD_POST_REQUEST:
             return {
                 ...state,
-                mainPost: [action.data, ...state.mainPost],
-                postAdded: true
+                addPostLoading: true,
+                addPostDone: false,
+                addPostError: null
+            };
+        case ADD_POST_SUCCESS:
+            return {
+                ...state,
+                mainPost: [dummyPost, ...state.mainPost],
+                addPostLoading: false,
+                addPostDone: true
+            };
+        case ADD_POST_FAILURE:
+            return {
+                ...state,
+                addPostLoading: false,
+                addPostError: action.error
+            };
+        case ADD_COMMENT_REQUEST:
+            return {
+                ...state,
+                addCommentLoading: true,
+                addCommentDone: false,
+                addCommentError: null
+            };
+        case ADD_COMMENT_SUCCESS:
+            return {
+                ...state,
+                addCommentLoading: false,
+                addCommentDone: true
+            };
+        case ADD_COMMENT_FAILURE:
+            return {
+                ...state,
+                addCommentLoading: false,
+                addCommentError: action.error
             };
         default:
             return {

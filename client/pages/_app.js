@@ -5,6 +5,7 @@ import 'antd/dist/antd.css';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import wrapper from '../redux/store';
+import withReduxSaga from 'next-redux-saga';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -37,4 +38,4 @@ App.propTypes = {
     Component: PropTypes.elementType.isRequired,
 }
 
-export default wrapper.withRedux(App);
+export default wrapper.withRedux(withReduxSaga(App));
