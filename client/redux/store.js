@@ -3,6 +3,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import rootReducer from './root-reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
+import rootSaga from './root-saga';
 
 const configureStore = () => {
     const sagaMiddleware = createSagaMiddleware();
@@ -10,8 +11,9 @@ const configureStore = () => {
     const enhancer = process.env.NODE_ENV === 'production' ?
         // 개발시에 필요한 middleware 추가 (redux-saga, thunk)
         compose(applyMiddleware(...middleware)) :
-        composeWithDevTools(applyMiddleware());
+        composeWithDevTools(applyMiddleware(...middleware));
     const store = createStore(rootReducer, enhancer);
+    store.sataTask = sagaMiddleware.run(rootSaga);
     return store;
 };
 
