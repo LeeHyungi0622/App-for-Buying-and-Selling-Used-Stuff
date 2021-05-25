@@ -1,10 +1,10 @@
-import { userTypes } from './user.types';
+import { LOG_IN_REQUEST, LOG_OUT_REQUEST } from './user.types';
 
-export const login = data => ({
-    type: userTypes.LOG_IN,
+export const loginRequestAction = data => ({
+    type: LOG_IN_REQUEST,
     data
 });
 
-export const logout = () => ({
-    type: userTypes.LOG_OUT
+export const logoutRequestAction = () => ({
+    type: LOG_OUT_REQUEST
 });
