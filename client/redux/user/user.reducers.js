@@ -21,7 +21,7 @@ const dummyUser = (data) => ({
     ...data,
     nickname: 'lee',
     id: 1,
-    Post: [],
+    Posts: [],
     Followings: [],
     Followers: []
 });
@@ -40,7 +40,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 logInLoading: false,
                 logInDone: true,
-                currentUser: dummyUser
+                currentUser: dummyUser(action.data)
             };
         case LOG_IN_FAILURE:
             return {
