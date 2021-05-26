@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Button, Form, Input } from 'antd';
 import useInput from '../hooks/useInput';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { loginRequestAction } from '../redux/user/user.actions';
 
 const Logo = styled.img`
     display: block;
@@ -38,11 +40,17 @@ const WrapperContainer = styled.div`
 `;
 
 const LoginForm = () => {
-    const [email, setEmail] = useInput('');
-    const [password, setPassword] = useInput('');
-    
+    const [email, onChangeEmail] = useInput('');
+    const [password, onChangePassword] = useInput('');
+    const dispatch = useDispatch();
+
+    const onSubmitForm = useCallback(() => {
+        console.log(email, password);
+        dispatch(loginRequestAction({ email, password }));
+    }, [email, password]);
+
     return (
-        <SForm>
+        <SForm onFinish={onSubmitForm}>
             <WrapperContainer>
                 <Logo src="/logo.png" alt="로고 이미지"/>
                 <Greeting>오늘 하루도 인생템 득템하세요!</Greeting>
@@ -52,7 +60,7 @@ const LoginForm = () => {
                     <Input 
                         name="user-email"
                         value={email}
-                        onChange={setEmail}  
+                        onChange={onChangeEmail}  
                         required
                     />
                 </Form.Item>
@@ -62,7 +70,7 @@ const LoginForm = () => {
                     <Input.Password
                         name="user-password"
                         value={password}
-                        onChange={setPassword}
+                        onChange={onChangePassword}
                         required  
                     />
                 </Form.Item>

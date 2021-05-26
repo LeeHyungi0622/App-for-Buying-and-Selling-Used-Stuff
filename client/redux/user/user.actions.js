@@ -5,6 +5,6 @@ export const loginRequestAction = data => ({
     data
 });
 
-export const logoutRequestAction = () => ({
+export const logoutRequestAction = ({
     type: LOG_OUT_REQUEST
 });
