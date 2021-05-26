@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Row, Col } from 'antd';
 import styled from 'styled-components';
 import LoginForm from './LoginForm';
+import { useSelector } from 'react-redux';
 
 const Header = styled.header`
     height: 10vh;
@@ -47,6 +48,7 @@ const SMenu = styled(Menu)`
 
 
 const AppLayout = ({ children }) => {
+    const { currentUser } = useSelector((state) => state.user);
     return (
         <>
             <Header>
@@ -58,10 +60,8 @@ const AppLayout = ({ children }) => {
             </SRow>
             <SMenu mode="horizontal">
                 <Link href="/"><a>메인페이지</a></Link>
-                <Link href="/cart"><a>내가 찜한 목록</a></Link>
                 <Link href="/profile"><a>마이 페이지</a></Link>
-                <Link href="/login"><a>로그인</a></Link>
-                <Link href="/signup"><a>회원가입</a></Link>     
+                { !currentUser && <Link href="/signup"><a>회원가입</a></Link> }   
             </SMenu>
         </>
     );
