@@ -7,10 +7,16 @@ import LoginForm from './LoginForm';
 import { useSelector } from 'react-redux';
 
 const Header = styled.header`
-    height: 10vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    height: 80px;
     border: 1px solid black;
     background: #233e8b;
     padding: 10px;
+    overflow: hidden;
 `;
 
 const Logo = styled.img`
@@ -29,23 +35,34 @@ const Title = styled.h1`
 `;
 
 const SRow = styled(Row)`
-    height: 80vh;
+    position: absolute;
+    top: 80px;
+    bottom: 80px;
+    left: 0;
+    right: 0;
+    overflow: auto;
+    margin: 10px;2
 `;
 
 const SMenu = styled(Menu)`
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
     display: flex;
     justify-content: space-around;
     align-items: center;
     background: #3d84b8;
     border: 1px solid black;
-    height: 10vh;
+    height: 80px;
     font-size: 1.2rem;
+    overflow: hidden;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     a {
         color: white;
     }
 `;
-
 
 const AppLayout = ({ children }) => {
     const { currentUser } = useSelector((state) => state.user);

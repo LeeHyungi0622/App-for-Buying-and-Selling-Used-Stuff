@@ -49,9 +49,41 @@
 
 🗓️ 2021.05.15(Sat)
 
-**(1) Issue1) Client side 프로젝트 기본 구성하기t**
+**(1) Issue1) Client side 프로젝트 기본 구성하기**
 
 → [https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/1](https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/1)
+
+**(2) Issue3) 로그인 컴포넌트 만들기**
+
+→ [https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/3](https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/3)
+
+**(3) Issue5) 회원가입 페이지 완성**
+
+→ [https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/5](https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/5)
+
+🗓️ 2021.05.16(Sun)
+
+**(4) Issue7) Next.js에 Redux 기본 구성하기**
+
+→ [https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/7](https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/7)
+
+🗓️ 2021.05.25(Tue)
+
+**(5) Issue10) Redux-saga middleware 적용하기**
+
+→ [https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/10](https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/10)
+
+🗓️ 2021.05.26(Wed)
+
+**(6) Issue12) 로그인, 로그아웃 기능구현 (dummy data 활용)**
+
+→ [https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/12](https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/12)
+
+🗓️ 2021.05.31(Mon)
+
+**(7) Issue9) 중고 상품 포스팅관련 컴포넌트 만들기**
+
+→ [https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/9](https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/9)
 
 # **Project Screen Shots**
 
