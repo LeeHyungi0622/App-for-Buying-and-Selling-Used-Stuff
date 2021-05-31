@@ -75,16 +75,16 @@ const INITIAL_STATE = {
 
 
 // dummy post data
-const dummyPost = {
+const dummyPost = (data) => ({
     id: 2,
-    content: 'dummy data description',
+    content: data,
     User: {
         id: 1,
         nickname: 'lee',
     },
     Images: [],
     Comments: []
-}
+});
 
 const postReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -98,7 +98,7 @@ const postReducer = (state = INITIAL_STATE, action) => {
         case ADD_POST_SUCCESS:
             return {
                 ...state,
-                mainPost: [dummyPost, ...state.mainPost],
+                mainPost: [dummyPost(action.data), ...state.mainPost],
                 addPostLoading: false,
                 addPostDone: true
             };

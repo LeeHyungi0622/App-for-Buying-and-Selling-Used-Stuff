@@ -2,7 +2,7 @@ import { ADD_COMMENT_REQUEST, ADD_POST_REQUEST } from './post.types';
 
 export const addPost = (data) => ({
     type: ADD_POST_REQUEST,
-    data: dummyPostData
+    data
 });
 
 export const addComment = (data) => ({

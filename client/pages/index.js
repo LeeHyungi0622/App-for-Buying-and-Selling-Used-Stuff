@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import AppLayout from '../components/AppLayout';
 import PostCard from '../components/PostCard';
 import styled from 'styled-components';
+import PostForm from '../components/PostForm';
 
 const Wrapper = styled.div`
     margin: 0 auto;
@@ -15,6 +16,7 @@ const Home = () => {
     console.log('cu : ', currentUser);
     return (
         <AppLayout>
+            { currentUser && <PostForm /> }
             <Wrapper>
                 { mainPost.map((post) => (<PostCard key={post.id} post={post} />)) }
             </Wrapper>      
