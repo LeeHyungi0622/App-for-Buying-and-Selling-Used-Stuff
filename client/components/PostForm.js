@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addPost } from '../redux/post/post.actions';
 import useInput from '../hooks/useInput';
 import styled from 'styled-components';
+import shortId from 'shortid';
 
 const SForm = styled(Form)`
   display: flex;
@@ -36,7 +37,10 @@ const PostForm = () => {
   const imageInput = useRef();
   const onSubmit = useCallback(() => {
     console.log('submit text : ', text);
-    dispatch(addPost(text));
+    dispatch(addPost({
+      id: shortId,
+      content: text
+    }));
   }, [text]);
 
   const onClickImageUpload = useCallback(() => {

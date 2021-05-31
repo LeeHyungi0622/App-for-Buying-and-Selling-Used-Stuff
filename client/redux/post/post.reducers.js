@@ -1,69 +1,43 @@
 import { ADD_POST_REQUEST, ADD_POST_SUCCESS, ADD_POST_FAILURE, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, ADD_COMMENT_FAILURE, REMOVE_POST_REQUEST, REMOVE_POST_SUCCESS, REMOVE_POST_FAILURE } from './post.types';
+import shortId from 'shortid';
 
 const INITIAL_STATE = {
     mainPost: [{
+        id: 1,
+        User: {
             id: 1,
-            User: {
-                id: 1,
-                nickname: 'Lee'
-            },
-            content: 'dummy data description1 #hash1 #hash2',
-            Images: [{
-                    src: 'https://images.pexels.com/photos/3998365/pexels-photo-3998365.png'
-                },
-                {
-                    src: 'https://images.pexels.com/photos/12064/pexels-photo-12064.jpeg'
-                },
-                {
-                    src: 'https://images.pexels.com/photos/159775/library-la-trobe-study-students-159775.jpeg'
-                }
-            ],
-            Comments: [{
-                    User: {
-                        nickname: 'Sang',
-                    },
-                    content: 'comment1'
-                },
-                {
-                    User: {
-                        nickname: 'CHOI',
-                    },
-                    content: 'comment2'
-                }
-            ]
+            nickname: 'Lee'
         },
-        {
-            id: 2,
-            User: {
-                id: 2,
-                nickname: 'Kim'
+        content: 'dummy data description1 #hash1 #hash2',
+        Images: [{
+                id: shortId.generate(),
+                src: 'https://images.pexels.com/photos/3998365/pexels-photo-3998365.png'
             },
-            content: 'dummy data description1 #hash1 #hash2',
-            Images: [{
-                    src: 'https://images.pexels.com/photos/3998365/pexels-photo-3998365.png'
+            {
+                id: shortId.generate(),
+                src: 'https://images.pexels.com/photos/12064/pexels-photo-12064.jpeg'
+            },
+            {
+                id: shortId.generate(),
+                src: 'https://images.pexels.com/photos/159775/library-la-trobe-study-students-159775.jpeg'
+            }
+        ],
+        Comments: [{
+                id: shortId.generate(),
+                User: {
+                    nickname: 'Sang',
                 },
-                {
-                    src: 'https://images.pexels.com/photos/12064/pexels-photo-12064.jpeg'
+                content: 'comment1'
+            },
+            {
+                id: shortId.generate(),
+                User: {
+                    nickname: 'CHOI',
                 },
-                {
-                    src: 'https://images.pexels.com/photos/159775/library-la-trobe-study-students-159775.jpeg'
-                }
-            ],
-            Comments: [{
-                    User: {
-                        nickname: 'Sang',
-                    },
-                    content: 'comment1'
-                },
-                {
-                    User: {
-                        nickname: 'CHOI',
-                    },
-                    content: 'comment2'
-                }
-            ]
-        }
-    ],
+                content: 'comment2'
+            }
+        ]
+    }, ],
     imagePaths: [],
     addPostLoading: false,
     addPostDone: false,
@@ -79,8 +53,8 @@ const INITIAL_STATE = {
 
 // dummy post data
 const dummyPost = (data) => ({
-    id: 2,
-    content: data,
+    id: data.id,
+    content: data.content,
     User: {
         id: 1,
         nickname: 'lee',
