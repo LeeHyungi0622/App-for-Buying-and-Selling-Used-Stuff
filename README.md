@@ -79,6 +79,8 @@
 
 → [https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/12](https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/12)
 
+🗓️ 2021.05.31(Mon)
+
 **(7) Issue9) 중고 상품 포스팅관련 컴포넌트 만들기**
 
 → [https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/9](https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/9)
