@@ -9,6 +9,7 @@ import PostCardContent from './PostCardContent';
 import CommentForm from './CommentForm';
 import PostImages from './PostImages';
 import styled from 'styled-components';
+import { removePost } from '../redux/post/post.actions';
 
 const CardWrapper = styled.div`
     display: flex;
@@ -36,6 +37,9 @@ const PostCard = ({ post }) => {
         setCommentFormOpened((prev) => !prev);
     }, []);
 
+    const onRemove = () => {
+        dispatch(removePost(post.id));
+    }
     return (
      <CardWrapper>
         <SCard
@@ -51,7 +55,7 @@ const PostCard = ({ post }) => {
                         {id && post.User.id === id ? (
                         <>
                             <Button>수정</Button>
-                            <Button type="danger">삭제</Button>
+                            <Button type="danger" onClick={onRemove}>삭제</Button>
                         </>
                         ) : <Button>신고</Button>}
                     </Button.Group>
