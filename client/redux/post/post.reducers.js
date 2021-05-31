@@ -1,4 +1,5 @@
-import { ADD_POST_REQUEST, ADD_POST_SUCCESS, ADD_POST_FAILURE, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, ADD_COMMENT_FAILURE } from './post.types';
+import { ADD_POST_REQUEST, ADD_POST_SUCCESS, ADD_POST_FAILURE, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, ADD_COMMENT_FAILURE, REMOVE_POST_REQUEST, REMOVE_POST_SUCCESS, REMOVE_POST_FAILURE } from './post.types';
+import shortId from 'shortid';
 
 const INITIAL_STATE = {
     mainPost: [{
@@ -9,33 +10,41 @@ const INITIAL_STATE = {
         },
         content: 'dummy data description1 #hash1 #hash2',
         Images: [{
+                id: shortId.generate(),
                 src: 'https://images.pexels.com/photos/3998365/pexels-photo-3998365.png'
             },
             {
+                id: shortId.generate(),
                 src: 'https://images.pexels.com/photos/12064/pexels-photo-12064.jpeg'
             },
             {
+                id: shortId.generate(),
                 src: 'https://images.pexels.com/photos/159775/library-la-trobe-study-students-159775.jpeg'
             }
         ],
         Comments: [{
+                id: shortId.generate(),
                 User: {
                     nickname: 'Sang',
                 },
                 content: 'comment1'
             },
             {
+                id: shortId.generate(),
                 User: {
                     nickname: 'CHOI',
                 },
                 content: 'comment2'
             }
         ]
-    }],
+    }, ],
     imagePaths: [],
     addPostLoading: false,
     addPostDone: false,
     addPostError: null,
+    removePostLoading: false,
+    removePostDone: false,
+    removePostError: null,
     addCommentLoading: false,
     addCommentDone: false,
     addCommentError: null
@@ -43,16 +52,16 @@ const INITIAL_STATE = {
 
 
 // dummy post data
-const dummyPost = {
-    id: 2,
-    content: 'dummy data description',
+const dummyPost = (data) => ({
+    id: data.id,
+    content: data.content,
     User: {
         id: 1,
         nickname: 'lee',
     },
     Images: [],
     Comments: []
-}
+});
 
 const postReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -66,7 +75,7 @@ const postReducer = (state = INITIAL_STATE, action) => {
         case ADD_POST_SUCCESS:
             return {
                 ...state,
-                mainPost: [dummyPost, ...state.mainPost],
+                mainPost: [dummyPost(action.data), ...state.mainPost],
                 addPostLoading: false,
                 addPostDone: true
             };
@@ -75,6 +84,26 @@ const postReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 addPostLoading: false,
                 addPostError: action.error
+            };
+        case REMOVE_POST_REQUEST:
+            return {
+                ...state,
+                removePostLoading: true,
+                removePostDone: false,
+                removePostError: null
+            };
+        case REMOVE_POST_SUCCESS:
+            return {
+                ...state,
+                mainPost: state.mainPost.filter((v) => v.id !== action.data),
+                removePostLoading: false,
+                removePostDone: true
+            };
+        case REMOVE_POST_FAILURE:
+            return {
+                ...state,
+                removePostLoading: false,
+                removePostError: action.error
             };
         case ADD_COMMENT_REQUEST:
             return {
