@@ -3,7 +3,7 @@
 # **Buy and Sell used and vintage stuff**
 
 <div align="center">
-  <img src="images/210515_second-hand-shop-banner.jpeg" alt="메인 이미지"/>
+  <img src="images/210515_second-hand-shop-banner.png" alt="메인 이미지"/>
 </div>
 
 # **Objectives**

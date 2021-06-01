@@ -1,4 +1,5 @@
 import { LOG_IN_FAILURE, LOG_IN_REQUEST, LOG_IN_SUCCESS, LOG_OUT_FAILURE, LOG_OUT_REQUEST, LOG_OUT_SUCCESS, SIGN_UP_FAILURE, SIGN_UP_REQUEST, SIGN_UP_SUCCESS } from './user.types';
+import produce from 'immer';
 
 const INITIAL_STATE = {
     logInLoading: false,
@@ -26,70 +27,52 @@ const dummyUser = (data) => ({
     Followers: []
 });
 
-const userReducer = (state = INITIAL_STATE, action) => {
+const userReducer = (state = INITIAL_STATE, action) => produce(state, (draft) => {
     switch (action.type) {
         case LOG_IN_REQUEST:
-            return {
-                ...state,
-                logInLoading: true,
-                logInError: null,
-                logInDone: false
-            };
+                draft.logInLoading = true;
+                draft.logInError = null;
+                draft.logInDone = false;
+                break;  
         case LOG_IN_SUCCESS:
-            return {
-                ...state,
-                logInLoading: false,
-                logInDone: true,
-                currentUser: dummyUser(action.data)
-            };
+                draft.logInLoading = false;
+                draft.logInDone = true;
+                draft.currentUser = dummyUser(action.data);
+                break;
         case LOG_IN_FAILURE:
-            return {
-                ...state,
-                logInLoading: false,
-                logInError: action.error
-            };
+                draft.logInLoading = false;
+                draft.logInError = action.error;
+                break;
         case LOG_OUT_REQUEST:
-            return {
-                ...state,
-                logOutLoading: true,
-                logOutError: null,
-                logOutDone: false
-            }
+                draft.logOutLoading = true;
+                draft.logOutError = null;
+                draft.logOutDone = false;
+                break;
         case LOG_OUT_SUCCESS:
-            return {
-                ...state,
-                logOutLoading: false,
-                logOutDone: true,
-                currentUser: null
-            }
+                draft.logOutLoading = false;
+                draft.logOutDone = true;
+                draft.currentUser = null;
+                break;
         case LOG_OUT_FAILURE:
-            return {
-                ...state,
-                logOutLoading: false,
-                logOutError: action.error
-            }
+                draft.logOutLoading = false;
+                draft.logOutError = action.error;
+                break;
         case SIGN_UP_REQUEST:
-            return {
-                ...state,
-                signUpLoading: true,
-                signUpError: null,
-                signUpDone: false
-            }
+                draft.signUpLoading = true;
+                draft.signUpError = null;
+                draft.signUpDone = false;
+                break;
         case SIGN_UP_SUCCESS:
-            return {
-                ...state,
-                signUpLoading: false,
-                signUpDone: true
-            }
+                draft.signUpLoading = false;
+                draft.signUpDone = true;
+                break;
         case SIGN_UP_FAILURE:
-            return {
-                ...state,
-                signUpLoading: false,
-                signUpError: action.error
-            }
+                draft.signUpLoading = false;
+                draft.signUpError = action.error;
+                break;
         default:
-            return state;
+            break;
     }
-};
+});
 
 export default userReducer;
