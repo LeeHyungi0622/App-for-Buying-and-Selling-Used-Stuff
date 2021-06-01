@@ -38,7 +38,7 @@ const PostForm = () => {
   const onSubmit = useCallback(() => {
     console.log('submit text : ', text);
     dispatch(addPost({
-      id: shortId,
+      id: shortId.generate(),
       content: text
     }));
   }, [text]);
