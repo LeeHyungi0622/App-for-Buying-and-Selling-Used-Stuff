@@ -2,7 +2,6 @@ import { all, fork, put, take, delay, call, takeLatest } from 'redux-saga/effect
 import axios from 'axios';
 import { ADD_POST_FAILURE, ADD_POST_REQUEST, ADD_POST_SUCCESS, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, ADD_COMMENT_FAILURE, REMOVE_POST_SUCCESS, REMOVE_POST_FAILURE, REMOVE_POST_REQUEST } from './post.types';
 import { ADD_POST_TO_CURRENTUSER, REMOVE_POST_OF_CURRENTUSER } from '../user/user.types';
-import shortId from 'shortid';
 
 function addPostAPI(data) {
     return axios.post('/api/posts', data);
@@ -10,10 +9,8 @@ function addPostAPI(data) {
 
 function* addPost(action) {
     try {
-        console.log('addPost saga');
         // const result = yield call(addPostAPI);
         yield delay(1000);
-        const id = shortId.generate();
         yield put({
             type: ADD_POST_SUCCESS,
             data: action.data,
@@ -23,7 +20,7 @@ function* addPost(action) {
         // current user의 post 리스트 객체에 추가된 포스트 추가
         yield put({
             type: ADD_POST_TO_CURRENTUSER,
-            data: id,
+            data: action.data.id,
         });
     } catch (error) {
         yield put({
@@ -39,7 +36,6 @@ function removePostAPI(data) {
 
 function* removePost(action) {
     try {
-        console.log('removePost saga');
         // const result = yield call(removePostAPI);
         yield delay(1000);
         yield put({
