@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useEffect } from 'react';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Typography } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPost } from '../redux/post/post.actions';
 import useInput from '../hooks/useInput';
@@ -29,12 +29,12 @@ const SButton = styled(Button)`
   border-radius: 10px;
 `;
 
-
 const PostForm = () => {
   const { imagePaths, addPostDone } = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const [text, onChangeText, setText] = useInput('');
   const imageInput = useRef();
+  const { Text } = Typography;
   const onSubmit = useCallback(() => {
     console.log('submit text : ', text);
     dispatch(addPost({
@@ -57,11 +57,12 @@ const PostForm = () => {
   }, [addPostDone]);
   return (
     <SForm style={{ margin: '10px 0 20px' }} encType="multipart/form-data" onFinish={onSubmit}>
+      <Text mark style={{ fontSize: '20px', fontWeight: '600' }}>당신의 중고물품을 업로드하세요.</Text>
       <Input.TextArea
         value={text}
         onChange={onChangeText}
         maxLength={140}
-        placeholder="어떤 일이 있었나요?"
+        placeholder="어떤 중고물품을 업로드하실건가요?"
       />
       <div>
         <input type="file" multiple hidden ref={imageInput} />

@@ -20,6 +20,15 @@ const CardWrapper = styled.div`
 
 const SCard = styled(Card)`
     background: transparent;
+    margin: 20px 0;
+    padding: 10px;
+    box-shadow: 5px 8px 24px 5px rgba(60, 60, 60, 0.6);
+`;
+
+const CommentWrapper = styled.div`
+    border: 1px solid rgba(180, 180, 180, 0.8);
+    padding: 10px;
+    margin-bottom: 20px;
 `;
 
 const PostCard = ({ post }) => {
@@ -46,22 +55,25 @@ const PostCard = ({ post }) => {
             cover={post.Images[0] && <PostImages images={post.Images} />}
             actions={[
             <RetweetOutlined key="retweet" />,
-            liked ? (<HeartTwoTone twoToneColor="#f70122" key="heart" onClick={onToggleLike} />) : (<HeartOutlined key="heart" onClick={onToggleLike} />),
-            <MessageOutlined key="comment" onClick={onToggleCommentFormOpen} />,
+            liked ? (<><HeartTwoTone twoToneColor="#f70122" key="heart" onClick={onToggleLike} /><span>좋아요</span></>) : (<><HeartOutlined key="heart" onClick={onToggleLike} /><span>좋아요</span></>),
+            <><MessageOutlined key="comment" onClick={onToggleCommentFormOpen} /><span>댓글보기</span></>,
             <Popover
                 key="more"
                 content={(
                     <Button.Group>
                         {id && post.User.id === id ? (
                         <>
-                            <Button>수정</Button>
-                            <Button type="danger" onClick={onRemove}>삭제</Button>
+                            <Button>수정하기</Button>
+                            <Button type="danger" onClick={onRemove}>게시물 삭제하기</Button>
                         </>
-                        ) : <Button>신고</Button>}
+                        ) : <Button>신고하기</Button>}
                     </Button.Group>
                 )}
-            >
-                <EllipsisOutlined />
+            >   
+                <>
+                    <EllipsisOutlined />
+                    <span>더보기</span>
+                </>
             </Popover>,
             ]}
         >
@@ -72,7 +84,7 @@ const PostCard = ({ post }) => {
             />
         </SCard>
         {commentFormOpened && (
-            <div>
+            <CommentWrapper>
                 <CommentForm post={post} />
                 <List
                     header={`${post.Comments.length}개의 댓글`}
@@ -90,7 +102,7 @@ const PostCard = ({ post }) => {
                     </li>
                     )}
                 />
-            </div>
+            </CommentWrapper>
         )}
      </CardWrapper>   
     );

@@ -33,19 +33,20 @@ const Contents = styled.div`
 `;
 
 const NameCard = styled(Card)`
+    margin-top: 20px;
     .ant-card-body {
         width: 100%;
         display: flex;
         justify-content: space-around;
-        background: #619aff;
         border-radius: 10px;
+        box-shadow: 5px 8px 24px 5px rgba(60, 60, 60, 0.6);
     }
 `;
 
 const ActivityCard = styled(Card)`
     margin: 20px 0;
-    background: #7baaff;
     border-radius: 10px;
+    box-shadow: 5px 8px 24px 5px rgba(60, 60, 60, 0.6);
 `;
 
 const SList = styled.ul`
