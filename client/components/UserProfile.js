@@ -33,19 +33,20 @@ const Contents = styled.div`
 `;
 
 const NameCard = styled(Card)`
+    margin-top: 20px;
     .ant-card-body {
         width: 100%;
         display: flex;
         justify-content: space-around;
-        background: #619aff;
         border-radius: 10px;
+        box-shadow: 5px 8px 24px 5px rgba(60, 60, 60, 0.6);
     }
 `;
 
 const ActivityCard = styled(Card)`
     margin: 20px 0;
-    background: #7baaff;
     border-radius: 10px;
+    box-shadow: 5px 8px 24px 5px rgba(60, 60, 60, 0.6);
 `;
 
 const SList = styled.ul`
@@ -59,11 +60,13 @@ const SItem = styled.li`
 
 const UserProfile = () => {
     const dispatch = useDispatch();
-    const { logOutLoading } = useSelector((state) => state.user);
+    const { logOutLoading, currentUser } = useSelector((state) => state.user);
 
     const onLogOut = useCallback(() => {
         dispatch(logoutRequestAction);       
     });
+
+    console.log('CURRENT USER : ',currentUser);
 
     const { Title } = Typography;
     return (
@@ -76,9 +79,9 @@ const UserProfile = () => {
 
                 <ActivityCard title="활동내역" bordered={true}>
                     <SList>
-                        <SItem><span>포스팅</span><span>0</span></SItem> 
-                        <SItem><span>팔로워</span><span>0</span></SItem> 
-                        <SItem><span>팔로잉</span><span>0</span></SItem> 
+                        <SItem><span>포스팅</span><span>{ currentUser.Posts.length }</span></SItem> 
+                        <SItem><span>팔로워</span><span>{ currentUser.Followings.length }</span></SItem> 
+                        <SItem><span>팔로잉</span><span>{ currentUser.Followers.length }</span></SItem> 
                     </SList>
                 </ActivityCard>
             </Contents>
