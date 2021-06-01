@@ -1,4 +1,4 @@
-import { ADD_POST_REQUEST, ADD_POST_SUCCESS, ADD_POST_FAILURE, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, ADD_COMMENT_FAILURE, REMOVE_POST_REQUEST, REMOVE_POST_SUCCESS, REMOVE_POST_FAILURE } from './post.types';
+import { ADD_POST_REQUEST, ADD_POST_SUCCESS, ADD_POST_FAILURE, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, ADD_COMMENT_FAILURE, REMOVE_POST_REQUEST, REMOVE_POST_SUCCESS, REMOVE_POST_FAILURE, REMOVE_COMMENT_REQUEST, REMOVE_COMMENT_SUCCESS, REMOVE_COMMENT_FAILURE } from './post.types';
 import shortId from 'shortid';
 import produce from 'immer';
 
@@ -48,7 +48,10 @@ const INITIAL_STATE = {
     removePostError: null,
     addCommentLoading: false,
     addCommentDone: false,
-    addCommentError: null
+    addCommentError: null,
+    removeCommentLoading: false,
+    removeCommentDone: false,
+    removeCommentError: null
 }
 
 
@@ -119,6 +122,21 @@ const postReducer = (state = INITIAL_STATE, action) => produce(state, (draft) =>
         case ADD_COMMENT_FAILURE:
             draft.addCommentLoading = false;
             draft.addCommentError = action.error;
+            break;
+        case REMOVE_COMMENT_REQUEST:
+            draft.removeCommentLoading = true;
+            draft.removeCommentDone = false;
+            draft.removeCommentError = null;
+            break;
+        case REMOVE_COMMENT_SUCCESS:
+            const targetPost = draft.mainPosts.find((v) => v.id === action.data.postId);
+            draft.removeCommentLoading = false;
+            draft.removeCommentDone = true;
+            targetPost.Comments = targetPost.Comments.filter((v) => v.id !== action.data.commentId);
+            break;
+        case REMOVE_COMMENT_FAILURE:
+            draft.removeCommentLoading = false;
+            draft.removeCommentError = action.error;
             break;
         default:
             break;

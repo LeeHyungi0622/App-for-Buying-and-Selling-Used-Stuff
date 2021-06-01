@@ -9,7 +9,7 @@ import PostCardContent from './PostCardContent';
 import CommentForm from './CommentForm';
 import PostImages from './PostImages';
 import styled from 'styled-components';
-import { removePost } from '../redux/post/post.actions';
+import { removeComment, removePost } from '../redux/post/post.actions';
 
 const CardWrapper = styled.div`
     display: flex;
@@ -42,6 +42,17 @@ const SettingButton = styled(Button)`
     height: 100%;
 `;
 
+const CommentListItem = styled.li`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    &:first-child {
+        border-top: 1px solid gray;
+    }
+    border-bottom: 1px solid gray;
+`;
+
 const PostCard = ({ post }) => {
     const [liked, onChangeLiked, setLiked] = useInput(false);
     const [commentFormOpened, setCommentFormOpened] = useState(false);
@@ -59,6 +70,13 @@ const PostCard = ({ post }) => {
 
     const onRemove = () => {
         dispatch(removePost(post.id));
+    }
+
+    const onDeleteComment = (id) => () => {
+        dispatch(removeComment({
+            postId: post.id,
+            commentId: id,
+        }))
     }
 
     const hoverContent = (
@@ -108,13 +126,20 @@ const PostCard = ({ post }) => {
                     dataSource={post.Comments}
                                 // dataSource로부터 넘겨받은 comment item을 반복 순회한다.
                     renderItem={(item) => (
-                    <li>
+                    <CommentListItem>
                         <Comment
                         author={item.User.nickname}
                         avatar={<Avatar>{item.User.nickname[0]}</Avatar>}
                         content={item.content}
                         />
-                    </li>
+                        {currentUser && currentUser.nickname === item.User.nickname && (
+                        <Button
+                            type="danger"
+                            onClick={onDeleteComment(item.id)}
+                        >
+                            댓글 삭제
+                        </Button>)}
+                    </CommentListItem>
                     )}
                 />
             </CommentWrapper>

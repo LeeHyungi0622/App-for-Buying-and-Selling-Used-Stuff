@@ -1,6 +1,6 @@
 import { all, fork, put, take, delay, call, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
-import { ADD_POST_FAILURE, ADD_POST_REQUEST, ADD_POST_SUCCESS, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, ADD_COMMENT_FAILURE, REMOVE_POST_SUCCESS, REMOVE_POST_FAILURE, REMOVE_POST_REQUEST } from './post.types';
+import { ADD_POST_FAILURE, ADD_POST_REQUEST, ADD_POST_SUCCESS, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, ADD_COMMENT_FAILURE, REMOVE_POST_SUCCESS, REMOVE_POST_FAILURE, REMOVE_POST_REQUEST, REMOVE_COMMENT_REQUEST, REMOVE_COMMENT_SUCCESS, REMOVE_COMMENT_FAILURE } from './post.types';
 import { ADD_POST_TO_CURRENTUSER, REMOVE_POST_OF_CURRENTUSER } from '../user/user.types';
 
 function addPostAPI(data) {
@@ -74,6 +74,26 @@ function* addComment(action) {
     }
 }
 
+function removeCommentAPI(data) {
+    return axios.post(`/api/post/${data.postId}/comment/${data.commentId}`, data);
+}
+
+function* removeComment(action) {
+    try {
+        // const result = yield call(removeCommentAPI);
+        yield delay(1000);
+        yield put({
+            type: REMOVE_COMMENT_SUCCESS,
+            data: action.data
+        });
+    } catch (error) {
+        yield put({
+            type: REMOVE_COMMENT_FAILURE,
+            data: error.response.data
+        });
+    }
+}
+
 function* watchAddPost() {
     yield takeLatest(ADD_POST_REQUEST, addPost);
 }
@@ -86,10 +106,15 @@ function* watchAddComment() {
     yield takeLatest(ADD_COMMENT_REQUEST, addComment);
 }
 
+function* watchRemoveComment() {
+    yield takeLatest(REMOVE_COMMENT_REQUEST, removeComment);
+}
+
 export default function* postSaga() {
     yield all([
         fork(watchAddPost),
         fork(watchRemovePost),
-        fork(watchAddComment)
+        fork(watchAddComment),
+        fork(watchRemoveComment)
     ]);
 }
