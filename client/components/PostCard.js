@@ -95,7 +95,6 @@ const PostCard = ({ post }) => {
         <SCard
             cover={post.Images[0] && <PostImages images={post.Images} />}
             actions={[
-            <RetweetOutlined key="retweet" />,
             liked ? (<><HeartTwoTone twoToneColor="#f70122" key="heart" onClick={onToggleLike} /><span>좋아요</span></>) : (<><HeartOutlined key="heart" onClick={onToggleLike} /><span>좋아요</span></>),
             <><MessageOutlined key="comment" onClick={onToggleCommentFormOpen} /><span>댓글보기</span></>,
             <Popover
