@@ -11,14 +11,14 @@ const Wrapper = styled.div`
 
 const Home = () => {
     const { currentUser } = useSelector((state) => state.user);
-    const { mainPost } = useSelector((state) => state.post);
-    console.log('mp : ', mainPost);
+    const { mainPosts } = useSelector((state) => state.post);
+    console.log('mp : ', mainPosts);
     console.log('cu : ', currentUser);
     return (
         <AppLayout>
             { currentUser && <PostForm /> }
             <Wrapper>
-                { mainPost.map((post) => (<PostCard key={post.id} post={post} />)) }
+                { mainPosts.map((post) => (<PostCard key={post.id} post={post} />)) }
             </Wrapper>      
         </AppLayout>
     );

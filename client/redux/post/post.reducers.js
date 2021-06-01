@@ -3,11 +3,11 @@ import shortId from 'shortid';
 import produce from 'immer';
 
 const INITIAL_STATE = {
-    mainPost: [{
+    mainPosts: [{
         id: 1,
         User: {
             id: 1,
-            nickname: 'Lee'
+            nickname: 'lee'
         },
         content: 'dummy data description1 #hash1 #hash2',
         Images: [{
@@ -38,7 +38,7 @@ const INITIAL_STATE = {
                 content: 'comment2'
             }
         ]
-    }, ],
+    }],
     imagePaths: [],
     addPostLoading: false,
     addPostDone: false,
@@ -64,6 +64,17 @@ const dummyPost = (data) => ({
     Comments: []
 });
 
+const dummyComment = (data) => ({
+    id: shortId.generate(),
+    content: data,
+    User: {
+        id: 1,
+        nickname: 'lee',
+    },
+    Images: [],
+    Comments: [],
+});
+
 const postReducer = (state = INITIAL_STATE, action) => produce(state, (draft) => {
     switch (action.type) {
         case ADD_POST_REQUEST:
@@ -72,7 +83,7 @@ const postReducer = (state = INITIAL_STATE, action) => produce(state, (draft) =>
             draft.addPostError = null;
             break;
         case ADD_POST_SUCCESS:
-            draft.mainPost.unshift(dummyPost(action.data));
+            draft.mainPosts.unshift(dummyPost(action.data));
             draft.addPostLoading = false;
             draft.addPostDone = true;
             break;
@@ -88,7 +99,7 @@ const postReducer = (state = INITIAL_STATE, action) => produce(state, (draft) =>
         case REMOVE_POST_SUCCESS:
             draft.removePostLoading = false;
             draft.removePostDone = true;
-            draft.mainPost = draft.mainPost.filter((v) => v.id !== action.data);
+            draft.mainPosts = draft.mainPosts.filter((v) => v.id !== action.data);
             break;
         case REMOVE_POST_FAILURE:
             draft.removePostLoading = false;
@@ -100,8 +111,10 @@ const postReducer = (state = INITIAL_STATE, action) => produce(state, (draft) =>
             draft.addCommentError = null;
             break;
         case ADD_COMMENT_SUCCESS:
+            const post = draft.mainPosts.find((v) => v.id === action.data.postId);
             draft.addCommentLoading = false;
             draft.addCommentDone = true;
+            post.Comments.unshift(dummyComment(action.data.content));
             break;
         case ADD_COMMENT_FAILURE:
             draft.addCommentLoading = false;
