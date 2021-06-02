@@ -1,7 +1,29 @@
 import { all, fork, put, take, delay, call, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
-import { ADD_POST_FAILURE, ADD_POST_REQUEST, ADD_POST_SUCCESS, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, ADD_COMMENT_FAILURE, REMOVE_POST_SUCCESS, REMOVE_POST_FAILURE, REMOVE_POST_REQUEST, REMOVE_COMMENT_REQUEST, REMOVE_COMMENT_SUCCESS, REMOVE_COMMENT_FAILURE } from './post.types';
+import { ADD_POST_FAILURE, ADD_POST_REQUEST, ADD_POST_SUCCESS, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, ADD_COMMENT_FAILURE, REMOVE_POST_SUCCESS, REMOVE_POST_FAILURE, REMOVE_POST_REQUEST, REMOVE_COMMENT_REQUEST, REMOVE_COMMENT_SUCCESS, REMOVE_COMMENT_FAILURE, LOAD_POST_REQUEST, LOAD_POST_SUCCESS, LOAD_POST_FAILURE } from './post.types';
 import { ADD_POST_TO_CURRENTUSER, REMOVE_POST_OF_CURRENTUSER } from '../user/user.types';
+import { generateDummyPost } from './post.reducers';
+
+function loadPostAPI(data) {
+    return axios.post('/api/posts', data);
+}
+
+function* loadPost(action) {
+    try {
+        console.log('load post saga');
+        // const result = yield call(loadPostAPI);
+        yield delay(1000);
+        yield put({
+            type: LOAD_POST_SUCCESS,
+            data: generateDummyPost(10),
+        });
+    } catch (error) {
+        yield put({
+            type: LOAD_POST_FAILURE,
+            data: error.response.data
+        })
+    }
+}
 
 function addPostAPI(data) {
     return axios.post('/api/posts', data);
@@ -94,6 +116,10 @@ function* removeComment(action) {
     }
 }
 
+function* watchLoadPost() {
+    yield takeLatest(LOAD_POST_REQUEST, loadPost);
+}
+
 function* watchAddPost() {
     yield takeLatest(ADD_POST_REQUEST, addPost);
 }
@@ -112,6 +138,7 @@ function* watchRemoveComment() {
 
 export default function* postSaga() {
     yield all([
+        fork(watchLoadPost),
         fork(watchAddPost),
         fork(watchRemovePost),
         fork(watchAddComment),

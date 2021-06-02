@@ -1,4 +1,8 @@
-import { ADD_COMMENT_REQUEST, ADD_POST_REQUEST, REMOVE_COMMENT_REQUEST, REMOVE_POST_REQUEST } from './post.types';
+import { ADD_COMMENT_REQUEST, ADD_POST_REQUEST, REMOVE_COMMENT_REQUEST, REMOVE_POST_REQUEST, LOAD_POST_REQUEST } from './post.types';
+
+export const loadPost = ({
+    type: LOAD_POST_REQUEST
+});
 
 export const addPost = (data) => ({
     type: ADD_POST_REQUEST,

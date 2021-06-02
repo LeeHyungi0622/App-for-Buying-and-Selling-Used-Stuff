@@ -22,7 +22,7 @@ const SForm = styled(Form)`
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 100vh;
 `;
 
 const SButton = styled(Button)`

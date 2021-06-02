@@ -11,11 +11,12 @@ const ProfileWrapper = styled.div`
     align-items: center;
     margin: auto;
     padding: 20px;
+    height: 100vh;
 `;
 
 const SButton = styled(Button)`
-    width: 80%;
-    margin: 20px 0;
+    width: 100%;
+    margin: 20px auto;
     border: 1px solid black;
     background: #f2fbf9;
     &:hover{
@@ -25,6 +26,7 @@ const SButton = styled(Button)`
 
 const Contents = styled.div`
     width: 500px;
+    margin: auto;
     h2 {
         text-align: center;
         font-size: 30px;
@@ -66,8 +68,6 @@ const UserProfile = () => {
         dispatch(logoutRequestAction);       
     });
 
-    console.log('CURRENT USER : ',currentUser);
-
     const { Title } = Typography;
     return (
         <ProfileWrapper>
@@ -84,8 +84,8 @@ const UserProfile = () => {
                         <SItem><span>팔로잉</span><span>{ currentUser.Followers.length }</span></SItem> 
                     </SList>
                 </ActivityCard>
-            </Contents>
             <SButton onClick={onLogOut} loading={logOutLoading}>로그아웃</SButton>
+            </Contents>
         </ProfileWrapper>
     );
 };
