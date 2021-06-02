@@ -11,6 +11,7 @@ const ProfileWrapper = styled.div`
     align-items: center;
     margin: auto;
     padding: 20px;
+    height: 100vh;
 `;
 
 const SButton = styled(Button)`
@@ -25,6 +26,7 @@ const SButton = styled(Button)`
 
 const Contents = styled.div`
     width: 500px;
+    margin: auto;
     h2 {
         text-align: center;
         font-size: 30px;
@@ -65,8 +67,6 @@ const UserProfile = () => {
     const onLogOut = useCallback(() => {
         dispatch(logoutRequestAction);       
     });
-
-    console.log('CURRENT USER : ',currentUser);
 
     const { Title } = Typography;
     return (
