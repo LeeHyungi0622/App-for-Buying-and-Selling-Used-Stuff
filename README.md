@@ -111,8 +111,31 @@
 
 **메인 페이지**
 
-<div align="center">
-  <img src="" alt="메인 페이지"/>
-</div>
+<table>
+    <tr>
+        <td width="50%">
+            <img src="images/210602_main_page.png" alt="메인 페이지"/>
+        </td>
+        <td width="50%">
+            <img src="images/210602_login_page.png" alt="로그인 페이지"/>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">메인 페이지</td>
+        <td align="center">로그인 페이지</td>
+    </tr>
+    <tr>
+        <td width="50%">
+            <img src="images/210602_join_page.png" alt="회원가입 페이지"/>
+        </td>
+        <td width="50%">
+            <img src="images/.png" alt=""/>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">회원가입 페이지</td>
+        <td align="center"></td>
+    </tr>
+</table>
 
 # **Installation and Setup Instruction**
