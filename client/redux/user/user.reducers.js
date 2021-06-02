@@ -1,4 +1,4 @@
-import { ADD_POST_TO_CURRENTUSER, LOG_IN_FAILURE, LOG_IN_REQUEST, LOG_IN_SUCCESS, LOG_OUT_FAILURE, LOG_OUT_REQUEST, LOG_OUT_SUCCESS, REMOVE_POST_OF_CURRENTUSER, SIGN_UP_FAILURE, SIGN_UP_REQUEST, SIGN_UP_SUCCESS } from './user.types';
+import { ADD_POST_TO_CURRENTUSER, FOLLOW_FAILURE, FOLLOW_REQUEST, FOLLOW_SUCCESS, LOG_IN_FAILURE, LOG_IN_REQUEST, LOG_IN_SUCCESS, LOG_OUT_FAILURE, LOG_OUT_REQUEST, LOG_OUT_SUCCESS, REMOVE_POST_OF_CURRENTUSER, SIGN_UP_FAILURE, SIGN_UP_REQUEST, SIGN_UP_SUCCESS, UNFOLLOW_FAILURE, UNFOLLOW_REQUEST, UNFOLLOW_SUCCESS } from './user.types';
 import produce from 'immer';
 
 const INITIAL_STATE = {
@@ -11,6 +11,12 @@ const INITIAL_STATE = {
     signUpLoading: false,
     signUpDone: false,
     signUpError: null,
+    followLoading: false,
+    followDone: false,
+    followError: null,
+    unfollowLoading: false,
+    unfollowDone: false,
+    unfollowError: null,
     currentUser: null,
     signUpData: {},
     loginData: {}
@@ -69,6 +75,34 @@ const userReducer = (state = INITIAL_STATE, action) => produce(state, (draft) =>
         case SIGN_UP_FAILURE:
             draft.signUpLoading = false;
             draft.signUpError = action.error;
+            break;
+        case FOLLOW_REQUEST:
+            draft.followLoading = true;
+            draft.followError = null;
+            draft.followDone = false;
+            break;
+        case FOLLOW_SUCCESS:
+            draft.followLoading = false;
+            draft.currentUser.Followings.push({ id: action.data });
+            draft.followDone = true;
+            break;
+        case FOLLOW_FAILURE:
+            draft.followLoading = false;
+            draft.followError = action.error;
+            break;
+        case UNFOLLOW_REQUEST:
+            draft.unfollowLoading = true;
+            draft.unfollowError = null;
+            draft.unfollowDone = false;
+            break;
+        case UNFOLLOW_SUCCESS:
+            draft.unfollowLoading = false;
+            draft.currentUser.Followings = draft.currentUser.Followings.filter((v) => v.id !== action.data);
+            draft.unfollowDone = true;
+            break;
+        case UNFOLLOW_FAILURE:
+            draft.unfollowLoading = false;
+            draft.unfollowError = action.error;
             break;
         case ADD_POST_TO_CURRENTUSER:
             draft.currentUser.Posts.unshift({ id: action.data });
