@@ -34,14 +34,7 @@ const Title = styled.h1`
 `;
 
 const SRow = styled(Row)`
-    /* position: absolute;
-    top: 80px;
-    bottom: 80px;
-    left: 0;
-    right: 0;
-    overflow: auto;
-    overflow-y: scroll;
-    margin: 10px; */
+    padding: 80px 0;
 `;
 
 const SMenu = styled(Menu)`
