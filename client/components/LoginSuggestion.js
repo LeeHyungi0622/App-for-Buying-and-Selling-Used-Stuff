@@ -33,7 +33,7 @@ const LoginSuggestion = () => {
         <Wrapper>
             <SPageHeader
                 title="아직 로그인 안하셨어요?"
-                subTitle="로그인하시면 게시물 등록이 가능합니다." 
+                subTitle="로그인하시면 게시물 등록 및 댓글입력이 가능합니다." 
             />
             <ButtonContainer>
                 <Link href="/profile">

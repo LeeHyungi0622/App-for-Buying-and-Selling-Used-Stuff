@@ -6,6 +6,7 @@ import faker, { fake } from 'faker';
 const INITIAL_STATE = {
     mainPosts: [],
     imagePaths: [],
+    hasMorePosts: true,
     loadPostLoading: false,
     loadPostDone: false,
     loadPostError: null,
@@ -76,7 +77,10 @@ const postReducer = (state = INITIAL_STATE, action) => produce(state, (draft) =>
         case LOAD_POST_SUCCESS:
             draft.loadPostLoading = false;
             draft.loadPostDone = true;
-            draft.mainPosts = action.data.concat(draft.mainPosts);
+            // 서버로부터 호출한 데이터(dummy post data)와 기존 게시물 데이터를 접붙인다.
+            draft.mainPosts = draft.mainPosts.concat(action.data);
+            // 최대 50개까지 게시물을 확인하기 위해 제한
+            draft.hasMorePosts = draft.mainPosts.length < 50;
             break;
         case LOAD_POST_FAILURE:
             draft.loadPostLoading = false;

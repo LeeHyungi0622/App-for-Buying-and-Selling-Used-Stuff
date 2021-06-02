@@ -10,6 +10,7 @@ import CommentForm from './CommentForm';
 import PostImages from './PostImages';
 import styled from 'styled-components';
 import { removeComment, removePost } from '../redux/post/post.actions';
+import LoginSuggestion from './LoginSuggestion';
 
 const CardWrapper = styled.div`
     display: flex;
@@ -117,7 +118,7 @@ const PostCard = ({ post }) => {
         </SCard>
         {commentFormOpened && (
             <CommentWrapper>
-                <CommentForm post={post} />
+                { currentUser ? <CommentForm post={post} /> : <LoginSuggestion />}
                 <List
                     header={`${post.Comments.length}개의 댓글`}
                     itemLayout="horizontal"

@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Menu } from 'antd';
 import Link from 'next/link';
-import { Row, Col } from 'antd';
+import { Row } from 'antd';
 import styled from 'styled-components';
-import LoginForm from './LoginForm';
 import { useSelector } from 'react-redux';
 
 const Header = styled.header`
@@ -35,13 +34,14 @@ const Title = styled.h1`
 `;
 
 const SRow = styled(Row)`
-    position: absolute;
+    /* position: absolute;
     top: 80px;
     bottom: 80px;
     left: 0;
     right: 0;
     overflow: auto;
-    margin: 10px;2
+    overflow-y: scroll;
+    margin: 10px; */
 `;
 
 const SMenu = styled(Menu)`
@@ -66,6 +66,7 @@ const SMenu = styled(Menu)`
 
 const AppLayout = ({ children }) => {
     const { currentUser } = useSelector((state) => state.user);
+    
     return (
         <>
             <Header>
