@@ -15,8 +15,8 @@ const ProfileWrapper = styled.div`
 `;
 
 const SButton = styled(Button)`
-    width: 80%;
-    margin: 20px 0;
+    width: 100%;
+    margin: 20px auto;
     border: 1px solid black;
     background: #f2fbf9;
     &:hover{
@@ -84,8 +84,8 @@ const UserProfile = () => {
                         <SItem><span>팔로잉</span><span>{ currentUser.Followers.length }</span></SItem> 
                     </SList>
                 </ActivityCard>
-            </Contents>
             <SButton onClick={onLogOut} loading={logOutLoading}>로그아웃</SButton>
+            </Contents>
         </ProfileWrapper>
     );
 };
