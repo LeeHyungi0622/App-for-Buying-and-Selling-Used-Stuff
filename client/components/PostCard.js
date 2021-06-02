@@ -11,6 +11,7 @@ import PostImages from './PostImages';
 import styled from 'styled-components';
 import { removeComment, removePost } from '../redux/post/post.actions';
 import LoginSuggestion from './LoginSuggestion';
+import FollowButton from './FollowButton';
 
 const CardWrapper = styled.div`
     display: flex;
@@ -109,6 +110,7 @@ const PostCard = ({ post }) => {
                 </SettingButton>
             </Popover>,
             ]}
+            extra={currentUser && <FollowButton post={post} />}
         >
             <Card.Meta
                 avatar={<Avatar>{post.User.nickname[0]}</Avatar>}

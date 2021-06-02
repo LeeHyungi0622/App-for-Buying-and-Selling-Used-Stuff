@@ -107,6 +107,12 @@
 
 → [https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/19](https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/19)
 
+🗓️ 2021.06.03(Thu)
+
+**(11) Issue21) Follow/Unfollow 기능 구현하기**
+
+→ [https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/21](https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/21)
+
 # **Project Screen Shots**
 
 **메인 페이지**
@@ -114,27 +120,27 @@
 <table>
     <tr>
         <td width="50%">
-            <img src="images/210602_main_page.png" alt="메인 페이지"/>
+            <img src="images/210603_not_logged_in.png" alt="비로그인 페이지"/>
         </td>
         <td width="50%">
-            <img src="images/210602_login_page.png" alt="로그인 페이지"/>
+            <img src="images/210602_main_page.png" alt="메인 페이지"/>
         </td>
     </tr>
     <tr>
-        <td align="center">메인 페이지</td>
-        <td align="center">로그인 페이지</td>
+        <td align="center">메인 페이지(비로그인)</td>
+        <td align="center">메인 페이지(로그인)</td>
     </tr>
     <tr>
         <td width="50%">
             <img src="images/210602_join_page.png" alt="회원가입 페이지"/>
         </td>
         <td width="50%">
-            <img src="images/.png" alt=""/>
+            <img src="images/210602_login_page.png" alt="로그인 페이지"/>
         </td>
     </tr>
     <tr>
         <td align="center">회원가입 페이지</td>
-        <td align="center"></td>
+        <td align="center">로그인 페이지</td>
     </tr>
 </table>
 
