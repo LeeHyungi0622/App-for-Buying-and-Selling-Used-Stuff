@@ -74,10 +74,9 @@ function* signUp(action) {
             data: action.data,
         });
     } catch (error) {
-        console.log(error);
         yield put({
             type: SIGN_UP_FAILURE,
-            data: error.response.data
+            error: error.response.data
         });
     }
 }
