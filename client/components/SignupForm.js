@@ -1,8 +1,11 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Button, Form, Input, Checkbox } from 'antd';
 import useInput from '../hooks/useInput';
 import styled from 'styled-components';
 import Message from '../components/Message';
+import { useDispatch, useSelector } from 'react-redux';
+import { SIGN_UP_REQUEST } from '../redux/user/user.types';
+import Router from 'next/router';
 
 const Logo = styled.img`
     display: block;
@@ -49,26 +52,53 @@ const SignupForm = () => {
     // 약관동의
     const [termCheck, setTermCheck] = useState(false);
     const [termCheckError, setTermCheckError] = useState(true);
+    const { signUpDone, signUpError, currentUser } = useSelector((state) => state.user);
+    const dispatch = useDispatch();
 
     const onPasswordCheck = useCallback((e) => {
         setPasswordCheck(e.target.value);
         setPasswordError(e.target.value !== password);
-    });
+    }, [password]);
     
     const onTermChange = useCallback((e) => {
-        // 체크한 경우에는 에더false
+        // 체크한 경우에는 에러 false
         setTermCheckError(!e.target.checked);
         setTermCheck(e.target.checked);
     },[]);
 
+    // 회원가입이 완료되면, main 페이지로 redirect 한다.
+    useEffect(() => {
+        if (signUpDone) {
+            Router.push('/');
+        }
+    }, [signUpDone]);
+
+    // 회원가입시에 에러가 발생하면, 해당 에러 메시지를 alert 한다.
+    useEffect(() => {
+        if(signUpError) {
+            alert(signUpError);
+        }
+    }, [signUpError]);
+
     const onSubmit = useCallback(() => {
+        console.log('submit click');
+        // 비밀번호 입력 확인 
         if (password !== passwordCheck) {
             return setPasswordError(true);
         }
-    }, []);
+        // 약관동의 확인
+        if (!termCheck) {
+            return setTermCheckError(true);
+        }
+        // SignUp Request
+        dispatch({
+            type: SIGN_UP_REQUEST,
+            data: { email, password, nickname, termCheck }
+        });
+    }, [password, passwordCheck, termCheck]);
 
     return (
-        <SForm>
+        <SForm onFinish={onSubmit}>
                 <Logo src="/logo.png" alt="로고 이미지"/>
             <WrapperContainer>
                 <Greeting>잠깐! 신규회원에게는 30% 할인쿠폰 쏩니다.</Greeting>
