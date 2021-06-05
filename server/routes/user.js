@@ -4,7 +4,8 @@ const router = express.Router();
 
 // 회원가입 관련 Router
 router.post('/', (req, res, next) => {
-    res.send('회원가입 관련 라우터');
+    console.log('signup success');
+    console.log(req.body);
 });
 
 // 로그인 관련 Router

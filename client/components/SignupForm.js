@@ -3,6 +3,8 @@ import { Button, Form, Input, Checkbox } from 'antd';
 import useInput from '../hooks/useInput';
 import styled from 'styled-components';
 import Message from '../components/Message';
+import { useDispatch } from 'react-redux';
+import { SIGN_UP_REQUEST } from '../redux/user/user.types';
 
 const Logo = styled.img`
     display: block;
@@ -49,26 +51,38 @@ const SignupForm = () => {
     // 약관동의
     const [termCheck, setTermCheck] = useState(false);
     const [termCheckError, setTermCheckError] = useState(true);
+    const dispatch = useDispatch();
 
     const onPasswordCheck = useCallback((e) => {
         setPasswordCheck(e.target.value);
         setPasswordError(e.target.value !== password);
-    });
+    }, [password]);
     
     const onTermChange = useCallback((e) => {
-        // 체크한 경우에는 에더false
+        // 체크한 경우에는 에러 false
         setTermCheckError(!e.target.checked);
         setTermCheck(e.target.checked);
     },[]);
 
     const onSubmit = useCallback(() => {
+        console.log('submit click');
+        // 비밀번호 입력 확인 
         if (password !== passwordCheck) {
             return setPasswordError(true);
         }
-    }, []);
+        // 약관동의 확인
+        if (!termCheck) {
+            return setTermCheckError(true);
+        }
+        // SignUp Request
+        dispatch({
+            type: SIGN_UP_REQUEST,
+            data: { email, password, nickname, termCheck }
+        });
+    }, [password, passwordCheck, termCheck]);
 
     return (
-        <SForm>
+        <SForm onFinish={onSubmit}>
                 <Logo src="/logo.png" alt="로고 이미지"/>
             <WrapperContainer>
                 <Greeting>잠깐! 신규회원에게는 30% 할인쿠폰 쏩니다.</Greeting>
