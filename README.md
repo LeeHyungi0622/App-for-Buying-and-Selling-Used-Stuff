@@ -113,6 +113,24 @@
 
 → [https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/21](https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/21)
 
+🗓️ 2021.06.05(Sat)
+
+**(12) Issue23) 백엔드 서버 기본 Setup**
+
+→ [https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/23](https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/23)
+
+**(13) Issue24) MySQL과 Sequelize 연결하고, Sequelize model 생성 및 관계설정**
+
+→ [https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/24](https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/24)
+
+**(14) Issue25) 회원가입 요청 처리 Router 작성**
+
+→ [https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/25](https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/25)
+
+**(15) Issue26) Passport-local로 로그인 기능 구현**
+
+→ [https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/26](https://github.com/LeeHyungi0622/App-for-Buying-and-Selling-Used-Stuff/issues/26)
+
 # **Project Screen Shots**
 
 **메인 페이지**
