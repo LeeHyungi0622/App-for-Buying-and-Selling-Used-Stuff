@@ -12,6 +12,13 @@ const sequelize = new Sequelize(
     config
 );
 
+// 작성한 model들을 sequelize에 등록
+db.User = require('./user')(sequelize, Sequelize);
+db.Post = require('./post')(sequelize, Sequelize);
+db.Image = require('./image')(sequelize, Sequelize);
+db.Hashtag = require('./hashtag')(sequelize, Sequelize);
+db.Comment = require('./comment')(sequelize, Sequelize);
+
 Object.keys(db).forEach(modelName => {
     if (db[modelName].associate) {
         db[modelName].associate(db);
