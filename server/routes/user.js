@@ -35,7 +35,8 @@ router.post('/', async(req, res, next) => {
 
 // 로그인 관련 Router
 router.post('/login', (req, res, next) => {
-    res.send('로그인 관련 라우터')
+    res.send('로그인 관련 라우터');
+    console.log('CHECK EMAIL, PASSWORD : ', req.body.email, req.body.password);
 });
 
 // 로그아웃 관련 Router
