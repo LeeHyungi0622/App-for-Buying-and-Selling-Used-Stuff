@@ -3,6 +3,10 @@ const userRouter = require('./routes/user');
 const dotenv = require('dotenv');
 const db = require('./models');
 const cors = require('cors');
+const passport = require('passport');
+const passportConfig = require('./passport');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 dotenv.config();
 
@@ -20,8 +24,20 @@ db.sequelize.sync()
     })
     .catch(console.error);
 
+// passport 환경설정
+passportConfig();
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// session
+app.use(session({
+    saveUninitialized: false,
+    resave: false,
+    secret: process.env.COOKIE_SECRET,
+}));
+app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get('/', (req, res) => {
     res.send('hello api');
