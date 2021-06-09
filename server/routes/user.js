@@ -71,7 +71,10 @@ router.post('/login', (req, res, next) => {
 
 // 로그아웃 관련 Router
 router.post('/logout', (req, res, next) => {
-    res.send('로그아웃 관련 라우터')
+    req.logout();
+    // session, cookie 삭제
+    req.session.destroy();
+    res.send('ok');
 });
 
 module.exports = router;

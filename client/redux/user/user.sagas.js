@@ -38,19 +38,18 @@ function* login(action) {
 }
 
 function logOutAPI() {
-    return axios.post('/post/logout');
+    return axios.post('/user/logout');
 }
 
 function* logout(action) {
     try {
-        console.log('saga logout');
-        // const result = yield call(logOutAPI, action.data);
-        yield delay(1000);
+        yield call(logOutAPI);
         yield put({
             type: LOG_OUT_SUCCESS,
-            data: action.data
+            data: action.data,
         });
     } catch (error) {
+        console.log(error);
         yield put({
             type: LOG_OUT_FAILURE,
             data: error.response.data
