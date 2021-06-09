@@ -1,6 +1,7 @@
 const express = require('express');
-const { User } = require('../models');
+const { User, Post } = require('../models');
 const bcrypt = require('bcrypt');
+const passport = require('passport');
 
 const router = express.Router();
 
@@ -35,12 +36,45 @@ router.post('/', async(req, res, next) => {
 
 // 로그인 관련 Router
 router.post('/login', (req, res, next) => {
-    res.send('로그인 관련 라우터')
+    passport.authenticate('local', (err, user, info) => {
+        if (err) {
+            console.error(err);
+            return next(err);
+        }
+        if (info) {
+            return res.status(401).send(info.reason);
+        }
+        return req.login(user, async(loginErr) => {
+            if (loginErr) {
+                console.error(loginErr);
+                return next(loginErr);
+            }
+            const fullUserWithoutPassword = await User.findOne({
+                where: { id: user.id },
+                attributes: {
+                    exclude: ['password']
+                },
+                include: [{
+                    model: Post,
+                }, {
+                    model: User,
+                    as: 'Followings',
+                }, {
+                    model: User,
+                    as: 'Followers',
+                }]
+            });
+            return res.status(200).json(fullUserWithoutPassword);
+        });
+    })(req, res, next);
 });
 
 // 로그아웃 관련 Router
 router.post('/logout', (req, res, next) => {
-    res.send('로그아웃 관련 라우터')
+    req.logout();
+    // session, cookie 삭제
+    req.session.destroy();
+    res.send('ok');
 });
 
 module.exports = router;
