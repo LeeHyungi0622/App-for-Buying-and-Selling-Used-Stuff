@@ -163,5 +163,3 @@
         <td align="center">로그인 페이지</td>
     </tr>
 </table>
-
-# **Installation and Setup Instruction**
